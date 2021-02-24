@@ -1,0 +1,13 @@
+kubernetes-dashboard:
+  extraArgs:
+    - --enable-skip-login
+    - --enable-insecure-login
+  protocolHttp: true
+  ingress:
+    enabled: true
+    customPaths:
+    - backend:
+        serviceName: dashboard-kubernetes-dashboard
+        servicePort: 443
+    hosts:
+    - dashboard.localhost

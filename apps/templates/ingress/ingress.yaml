@@ -1,0 +1,29 @@
+# apiVersion: argoproj.io/v1alpha1
+# kind: Application
+# metadata:
+#   name: ingress
+#   namespace: argocd
+#   annotations:
+#     argocd.argoproj.io/sync-wave: "-3"
+#   finalizers:
+#     - resources-finalizer.argocd.argoproj.io
+# spec:
+#   project: default
+
+#   source:
+#   # if kind 
+#     repoURL: https://github.com/BadLiveware/kubernetes-gitops.git
+#     targetRevision: HEAD
+#     path: charts/ingress-nginx
+#   # else
+#   # Use real
+
+#   destination:
+#     namespace: ingress-nginx
+#     server: https://kubernetes.default.svc
+
+#   syncPolicy:
+#     syncOptions:
+#     - CreateNamespace=true
+#     automated:
+#       prune: true

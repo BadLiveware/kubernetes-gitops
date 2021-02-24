@@ -1,0 +1,25 @@
+apiVersion: install.istio.io/v1alpha1
+kind: IstioOperator
+metadata:
+  name: istio-control-plane
+  namespace: istio-system
+spec:
+  components:
+    pilot:
+      enabled: true
+      namespace: istio-system
+  values:
+    global:
+      logging:
+        level: "default:debug"
+#     cni: 
+#       enabled: true
+#     ingressGateways:
+#       enabled: true
+#       name: istio-ingress
+#       namespace: ingress-istio
+#   values:
+#     cni:
+#       excludeNamespaces:
+#        - istio-system
+#        - kube-system

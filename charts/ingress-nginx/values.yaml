@@ -1,0 +1,13 @@
+ingress-nginx:
+  nodeSelector: 
+    ingress-ready: 'true'
+    kubernetes.io/os: linux
+
+  controller:
+    service:
+      type: NodePort
+      nodePorts:
+        http: 80
+        https: 443
+        # tcp:
+        #   8080: 32808
