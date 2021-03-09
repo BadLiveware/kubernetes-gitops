@@ -1,0 +1,84 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: istio-crds
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "-3"
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+
+  source:
+    path: manifests/charts/base
+    repoURL: https://github.com/istio/istio.git
+    targetRevision: {{ .Values.istioRevision }}
+
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: istio-system
+
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true
+    automated:
+      prune: true
+      selfHeal: true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: istio
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "-2"
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+
+  source:
+    path: manifests/charts/istio-operator
+    repoURL: https://github.com/istio/istio.git
+    targetRevision: {{ .Values.istioRevision }}
+
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: istio-operator
+
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true
+    automated:
+      prune: true
+      selfHeal: true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: istio-operator
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1"
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+
+  source:
+    path: charts/istio
+    repoURL: https://github.com/BadLiveware/kubernetes-gitops.git
+    targetRevision: HEAD
+
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: istio-system
+
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true
+    automated:
+      prune: true
+      selfHeal: true

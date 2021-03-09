@@ -5,9 +5,9 @@ kubernetes-dashboard:
   protocolHttp: true
   ingress:
     enabled: true
-    customPaths:
-    - backend:
-        serviceName: dashboard-kubernetes-dashboard
-        servicePort: 443
+    # customPaths:
+    # - backend:
+    #     serviceName: dashboard-kubernetes-dashboard
+    #     servicePort: 443
     hosts:
     - dashboard.localhost

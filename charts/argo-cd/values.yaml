@@ -5,12 +5,7 @@ argo-cd:
       tag: v1.8.4
   dex:
     enabled: false
-  # reposerver:
-  #   loglevel: debug
-  # controller:
-  #   loglevel: debug
   server:
-    # loglevel: debug
     extraArgs:
       - --insecure
     config:

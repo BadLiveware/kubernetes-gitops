@@ -1,3 +1,4 @@
-kiali-operator:
-  cr:
-    namespace: istio-system
+# kiali-operator:
+#   cr:
+
+#     namespace: istio-system

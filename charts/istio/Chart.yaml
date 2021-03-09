@@ -3,5 +3,5 @@ name: istio
 version: 1.0.0
 dependencies:
   - name: kiali-operator
-    version: 1.30.0
+    version: 1.31.0
     repository: https://kiali.org/helm-charts 

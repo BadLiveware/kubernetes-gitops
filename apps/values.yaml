@@ -1,7 +1,4 @@
-# spec:
-#   destination:
-#     server: "https://kubernetes.default.svc"
+environment: local
 
-istio:
-  revision: "1.9.0"
-  namespace: ""
+istioRevision: 1.9.1
+# cluster: "https://kubernetes.default.svc"
